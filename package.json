@@ -1,0 +1,23 @@
+{
+  "name": "connect-login",
+  "version": "1.0.0",
+  "description": "Connect login middleware for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srossross/node-connect-login"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/srossross/node-connect-login/issues"
+  },
+  "homepage": "https://github.com/srossross/node-connect-login",
+  "devDependencies": {
+    "chai": "^2.2.0",
+    "mocha": "^2.2.1"
+  }
+}
