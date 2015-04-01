@@ -9,7 +9,7 @@ npm install --save connect-login
 
 ## Usage
 
-You can allso see a full example [here](https://github.com).
+You can allso see a full example [here](https://github.com/srossross/node-connect-login/blob/master/example/app.js).
 
 ```
 var connectLogin = require('connect-login');
