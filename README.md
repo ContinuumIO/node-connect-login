@@ -1,5 +1,21 @@
 # node-connect-login
 
+A simple login middleware that does not impose any methodology on you!
+
+This module is based of of **Python's** [Flask-Login](https://flask-login.readthedocs.org/en/latest/) module.
+
+It will:
+
+ * Store the active user’s ID in the session, and let you log them in and out easily.
+ * Let you restrict views to logged-in (or logged-out) users.
+
+However, it does not:
+
+ * Impose a particular database or other storage method on you. You are entirely in charge of how the user is loaded.
+ * Restrict you to using usernames and passwords, OpenIDs, or any other method of authenticating.
+ * Handle permissions beyond “logged in or not.”
+ * Handle user registration or account recovery.
+
 
 ## Install
 
