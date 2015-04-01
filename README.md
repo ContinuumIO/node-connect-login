@@ -118,5 +118,8 @@ Log out the current user
 The currently logged in user
 
 
+### `req.loginManager`
+
+The current login manager
 
 
