@@ -75,11 +75,15 @@ anonymousUser allows an anonymous user to be created and used when a user is not
 
 
 
-## connectLogin.loginRequired
+## `connectLogin.loginRequired`
 
 This middleare can be used in a route to require that the user be logged in
 to view it. If the user is not logged in a redirect to `options.loginPath` is sent
 
-```
 
+```
+app.get('/private', connectLogin.loginRequired, function(req, res){
+	res.send("Shhh!");
+});
+```
 
