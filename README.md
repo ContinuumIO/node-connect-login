@@ -39,6 +39,13 @@ Connect Login middleware for NodeJS
 
 # API
 
+## User objects
+
+When configuring `connect-login` the user argument must
+only have one property `user.username`
+if `user.username` is null or undefined, the user is assumed to be anonymous.
+
+
 ## `connectLogin(options)
 
 ```
@@ -86,4 +93,30 @@ app.get('/private', connectLogin.loginRequired, function(req, res){
 	res.send("Shhh!");
 });
 ```
+
+## Added functions to the `req` object
+
+Once the `loginManager` is used. all req objects will have the following methods
+
+
+### `req.login(user, rememberMe)`
+
+
+This can be used from within a `/login` route so you can set a user as being logged in.
+
+```
+var user = myUserLoader(some_username);
+req.login(user);
+```
+
+### `req.logout()`
+
+Log out the current user
+
+### `req.user`
+
+The currently logged in user
+
+
+
 
