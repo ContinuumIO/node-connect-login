@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    body
+    if user.username
+        h1 Hello #{user.username}
+    else
+        h1 You are not logged in
+        form( method="post") Username:
+            input(name="username")
+            button Login
+
+    p
+        br
+        a(href="/restricted") Try Restricted Page
+
+    if next
+        p.
+          It looks like you are trying to access the page
+          <strong> #{next} </strong>
+          but it requires a login. When you login
+          you will be automatically directred there.
+
+

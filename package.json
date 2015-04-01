@@ -19,5 +19,8 @@
   "devDependencies": {
     "chai": "^2.2.0",
     "mocha": "^2.2.1"
+  },
+  "dependencies": {
+    "debug": "^2.1.3"
   }
 }

@@ -10,10 +10,10 @@ npm install --save connect-login
 ## Usage
 
 You can allso see a full example [here](https://github.com).
+
 ```
 var connectLogin = require('connect-login');
-
-loginManager = connectLogin();
+var loginManager = connectLogin();
 
 loginManager.anonymousUser(function(){
 	return {username: null};

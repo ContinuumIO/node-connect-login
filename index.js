@@ -1,4 +1,5 @@
 var querystring = require('querystring');
+var debug = require('debug')('connect-login');
 
 module.exports = function (options){
 
@@ -22,9 +23,11 @@ module.exports = function (options){
         req.loginManager = loginManager;
 
         req.login = function(user, rememberMe){
+            debug("req.login username: " + user.username);
 
             req.user = user;
             var userid = loginManager._userSaver(user);
+
             if (!userid){
                 throw Error("serializeUser() returned an empty value");
             }
@@ -57,8 +60,10 @@ module.exports = function (options){
         var signedCookies = req.signedCookies || {};
 
         req.logout = function(){
+
             delete req.session.userid;
             if (signedCookies.userid){
+                debug("logoug username:", signedCookies.userid);
                 res.clearCookie('userid');
             }
 
@@ -66,27 +71,32 @@ module.exports = function (options){
 
         var userid = req.session.userid || signedCookies.userid;
         if (userid){
+            debug("Load User user_id: " + userid);
             loginManager._userLoader(userid, function(err, user){
                 req.user = user;
                 next(err);
             });
         } else {
             if (loginManager._userCreator){
+                debug("Load Anonymous User");
                 res.locals.user = req.user = loginManager._userCreator();
             }
             next();
         }
     };
 
-    loginManager.loadUser = function(userLoader){
+    loginManager.loadUser = loginManager.userLoader = function(userLoader){
         loginManager._userLoader = userLoader;
+        debug("userLoader was set");
     };
 
-    loginManager.serializeUser = function(userSaver){
+    loginManager.serializeUser = loginManager.userSerializer = function(userSaver){
         loginManager._userSaver = userSaver;
+        debug("userSerializer was set");
     };
     loginManager.anonymousUser = function(userCreator){
         loginManager._userCreator = userCreator;
+        debug("anonymousUser creator was set");
     };
 
     loginManager.loginPath = options.loginPath || '/login';
