@@ -62,6 +62,8 @@ module.exports = function (options){
         req.logout = function(){
 
             delete req.session.userid;
+            delete req.session.fresh;
+
             if (signedCookies.userid){
                 debug("logoug username:", signedCookies.userid);
                 res.clearCookie('userid');
@@ -80,6 +82,8 @@ module.exports = function (options){
             if (loginManager._userCreator){
                 debug("Load Anonymous User");
                 res.locals.user = req.user = loginManager._userCreator();
+            } else {
+                res.locals.user = req.user = null;
             }
             next();
         }
@@ -105,6 +109,11 @@ module.exports = function (options){
 
 
 module.exports.loginRequired = function(req, res, next){
+
+    if (!req.loginManager){
+        next(new Error("connect-login middleware must be used before loginRequired"));
+    }
+
     var user  = req.user;
     if (!user || !user.username) {
         var url = req.loginManager.loginPath + '?' + querystring.stringify({next: req.path});
