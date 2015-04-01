@@ -73,7 +73,7 @@ module.exports = function (options){
         if (userid){
             debug("Load User user_id: " + userid);
             loginManager._userLoader(userid, function(err, user){
-                req.user = user;
+                res.locals.user = req.user = user;
                 next(err);
             });
         } else {
